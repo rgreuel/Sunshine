@@ -179,8 +179,10 @@ public class DetailActivity extends ActionBarActivity {
 
             mForecastStr = "" +
                     Utility.formatDate(data.getLong(COL_WEATHER_DATE)) +
-                    "\nHigh: " + Utility.formatTemperature(data.getDouble(COL_WEATHER_MAX_TEMP), Utility.isMetric(getActivity())) +
-                    "\nLow: " + Utility.formatTemperature(data.getDouble(COL_WEATHER_MIN_TEMP), Utility.isMetric(getActivity())) +
+                    "\nHigh: " + Utility.formatTemperature(getActivity(),
+                    data.getDouble(COL_WEATHER_MAX_TEMP), Utility.isMetric(getActivity())) +
+                    "\nLow: " + Utility.formatTemperature(getActivity(),
+                    data.getDouble(COL_WEATHER_MIN_TEMP), Utility.isMetric(getActivity())) +
                     "\n" + data.getString(COL_WEATHER_DESC) +
                     "\nHumidity: " + data.getDouble(COL_HUMIDITY) +
                     "\nPressure: " + data.getDouble(COL_PRESSURE) +
