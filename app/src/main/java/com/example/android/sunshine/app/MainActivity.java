@@ -13,16 +13,21 @@ import android.view.MenuItem;
 
 public class MainActivity extends ActionBarActivity {
 
+    private String mLocation;
+    private static final String FORECASTFRAGMENT_TAG = "ForecastFragment";
+
     private final String LOG_TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.v(LOG_TAG, "onCreate");
         super.onCreate(savedInstanceState);
+        mLocation = Utility.getPreferredLocation(this);
         setContentView(R.layout.activity_main);
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new ForecastFragment())
+                    .add(R.id.container, new ForecastFragment(), FORECASTFRAGMENT_TAG)
                     .commit();
         }
     }
@@ -54,6 +59,12 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         Log.v(LOG_TAG, "onResume");
+        ForecastFragment ff = (ForecastFragment)getSupportFragmentManager().findFragmentByTag(FORECASTFRAGMENT_TAG);
+        // check if location has changed
+        if (!Utility.getPreferredLocation(this).equals(mLocation)) {
+            ff.onLocationChanged();
+            mLocation = Utility.getPreferredLocation(this);
+        }
         super.onResume();
     }
 
