@@ -54,8 +54,7 @@
                 <ImageView
                     android:id="@+id/detail_icon"
                     android:layout_height="60dp"
-                    android:layout_width="60dp"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:layout_width="60dp"/>
 
                 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/detail_forecast_textview"
