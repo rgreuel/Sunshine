@@ -22,8 +22,6 @@ import android.widget.TextView;
 
 import com.example.android.sunshine.app.data.WeatherContract;
 
-import org.w3c.dom.Text;
-
 public class DetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String LOG_TAG = DetailFragment.class.getSimpleName();
@@ -166,7 +164,8 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         mDateView.setText(dateText);
         mFriendlyDateView.setText(friendlyDateText);
 
-        mIconView.setImageResource(R.mipmap.ic_launcher);
+        mIconView.setImageResource(
+                Utility.getArtResourceForWeatherCondition(data.getInt(COL_WEATHER_CONDITION_ID)));
 
         String description = data.getString(COL_WEATHER_DESC);
         mDescriptionView.setText(description);
